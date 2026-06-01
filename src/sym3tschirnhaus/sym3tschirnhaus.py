@@ -438,6 +438,12 @@ class Sym3Tschirnhaus():
         if self._output != None:
           # self._output.writeLine( f'Replace formula: {str(fReplace)}' )
           self._output.writeSymExpressWithStr( fReplace, "Depressed formula")
+
+          coeffDepressed = symexpress3.PolynomialCoefficients( fReplace, varNew )
+          for key, value in coeffDepressed.items():
+            self._output.writeLine( f'Power: {key}, Coefficient: {str( value) }')
+          self._output.writeLine( '')
+
           self._output.writeLine( f"New variable: {varNew}")
 
           self._output.writeSymExpressWithStr( oReversedFormula, f"Link between original variable {cVar} and new variable {varNew} (give zero)")
@@ -527,8 +533,13 @@ class Sym3Tschirnhaus():
 
         if self._output != None:
           self._output.writeSymExpressWithStr( frmLight, "Depressed formula" )
-          self._output.writeLine( f"New variable: {varNew}")
 
+          coeffDepressed = symexpress3.PolynomialCoefficients( frmLight, varNew )
+          for key, value in coeffDepressed.items():
+            self._output.writeLine( f'Power: {key}, Coefficient: {str( value) }')
+          self._output.writeLine( '')
+
+          self._output.writeLine( f"New variable: {varNew}")
           self._output.writeSymExpressWithStr( oReversedFormula, f"Link between original variable {cVar} and new variable {varNew} (give zero)")
           self._output.writeLine( "")
 
